@@ -373,4 +373,4 @@ sudo tccutil.py --insert com.apple.Terminal
 
 sqlite3 ~/Library/Application\ Support/Dock/desktoppicture.db "update data set value = '/Library/Desktop Pictures/admin.png'" && killall Dock
 
-srm /Users/localadmin/Library/LaunchDaemons/us.nh.k12.portsmouth.adminfirstboot.plist
+srm /Users/localadmin/Library/LaunchDaemons/Renamed and updated label to better reflect
