@@ -91,6 +91,7 @@ sudo chflags hidden /Applications/Game\ Center.app/
 # sudo chflags hidden /Applications/Time\ Machine.app/
 sudo chflags hidden /Applications/Utilities/Boot\ Camp\ Assistant.app/
 
+# Download custom admin and district wallpaper
 curl -o /Library/Desktop\ Pictures/admin.png http://brego/nobrain.png
 curl -o /Library/Caches/com.apple.desktop.admin.png http://brego/backgroundDefault2Wide.png
 
@@ -100,4 +101,5 @@ curl -o /Library/Caches/com.apple.desktop.admin.png http://brego/backgroundDefau
 sudo tccutil.py -i /usr/bin/osascript
 sudo tccutil.py --insert com.apple.Terminal
 
+# Remove the LaunchDaemon so the script doesn't run on subsequent boots
 srm /Library/LaunchDaemons/us.nh.k12.portsmouth.firstboot.plist
