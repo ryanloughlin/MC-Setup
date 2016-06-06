@@ -248,6 +248,28 @@ defaults write com.apple.dock autohide -bool false
 # Make Dock icons of hidden applications translucent
 defaults write com.apple.dock showhidden -bool true
 
+# Use dockutil to empty and then rebuild the dock
+dockutil --remove all
+dockutil --add /Applications/Utilities/System\ Information.app
+dockutil --add /Applications/Safari.app
+dockutil --add /Applications/Utilities/Terminal.app
+dockutil --add /Applications/Utilities/Console.app
+dockutil --add /Applications/Utilities/Activity\ Monitor.app
+dockutil --add /Applications/Utilities/Directory\ Utility.app
+dockutil --add /Applications/Utilities/Network\ Utility.app
+dockutil --add /Applications/Utilities/Airport\ Utility.app
+dockutil --add /Applications/Utilities/Wireless\ Diagnostics.app
+dockutil --add /Applications/Utilities/Disk\ Utility.app
+dockutil --add /Applications/Utilities/KeychainAccess.app
+dockutil --add /Applications/TimeMachine.app
+dockutil --add /Applications/Utilities/Screen\ Sharing.app
+dockutil --add /Applications/Utilities/Migration\ Assistant.app
+dockutil --add /Applications/SystemPreferences.app
+dockutil --add /Applications/coconutBattery.app
+dockutil --add /Applications/TextEdit.app
+dockutil --add /Applications/AppStore.app
+dockutil --add /Applications/Managed\ Software\ Center.app
+
 # Reset Launchpad
 # find ~/Library/Application Support/Dock -name "*.db" -maxdepth 1 -delete
 
@@ -366,11 +388,16 @@ defaults write com.apple.digihub com.apple.digihub.blank.dvd.appeared -dict acti
 # Disable video DVD automatic action.
 defaults write com.apple.digihub com.apple.digihub.dvd.video.appeared -dict action 1
 
-
 # Add osascript & terminal to the Accessability database
 sudo tccutil.py -i /usr/bin/osascript
 sudo tccutil.py --insert com.apple.Terminal
+sudo tccutil.py --insert org.pmbuko.ADPassMon.plist
 
-sqlite3 ~/Library/Application\ Support/Dock/desktoppicture.db "update data set value = '/Library/Desktop Pictures/admin.png'" && killall Dock
+# Set wallpaper to ultra dark gray
+osascript -e 'tell application "Finder" to set desktop picture to POSIX file "/Library/Desktop Pictures/Solid Colors/Solid Gray Pro Ultra Dark.png"'
 
-srm /Users/localadmin/Library/LaunchDaemons/Renamed and updated label to better reflect
+# Kill all affected applications
+killall Dock && killall Finder && killall SystemUIServer
+
+# Remove the launch daemon so the script doesn't run on subsequent logins
+srm /Users/localadmin/Library/LaunchDaemons/us.nh.k12.portsmouth.adminprefs.plist
