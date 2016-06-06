@@ -83,6 +83,7 @@ ln -s /System/Library/CoreServices/Applications/Screen\ Sharing.app /Application
 ln -s /System/Library/CoreServices/Applications/RAID\ Utility.app /Applications/Utilities/RAID\ Utility.app
 ln -s /System/Library/CoreServices/Applications/Archive\ Utility.app /Applications/Utilities/Archive\ Utility.app
 ln -s /System/Library/CoreServices/Applications/Wireless\ Diagnostics.app /Applications/Utilities/Wireless\ Diagnostics.app
+ln -s /Library/Desktop\ Pictures/backgroundDefault2Wide.png /System/Library/CoreServices/DefaultDesktop.jpg
 
 # Reveal IP address, hostname, OS version, etc. when clicking the clock in the login window
 defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo HostName
@@ -95,7 +96,7 @@ sudo chflags hidden /Applications/Utilities/Boot\ Camp\ Assistant.app/
 # Download custom admin and district wallpaper
 curl -o /Library/Desktop\ Pictures/admin.png http://brego/nobrain.png
 curl -o /Library/Caches/com.apple.desktop.admin.png http://brego/backgroundDefault2Wide.png
-
+curl -o /Library/Desktop\ Pictures/backgroundDefault2Wide.png http://brego/backgroundDefault2Wide.png
 
 
 # Add osascript & terminal to the Accessability database
