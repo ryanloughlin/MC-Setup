@@ -25,9 +25,15 @@ echo "export PS1='\[\033[1;35m\]\u\[\033[m\]@\[\033[37m\]\h:\[\033[33;1m\]\w\[\0
 # Menu bar: disable transparency
 defaults write NSGlobalDomain AppleEnableMenuBarTransparency -bool false
 
+# Menu bar: 
+defaults write NSGlobalDomain AppleInterfaceStyle Dark
+
 # Menu bar: show remaining battery time (on pre–10.8); show percentage
 defaults write com.apple.menuextra.battery ShowPercent -string "YES"
 defaults write com.apple.menuextra.battery ShowTime -string "YES"
+
+# Use Graphite Appearance
+defaults write NSGlobalDomain AppleAquaColorVariant -int 6
 
 # Always show scrollbars
 defaults write NSGlobalDomain AppleShowScrollBars -string "Always"
@@ -123,7 +129,7 @@ defaults write NSGlobalDomain AppleMeasurementUnits -string "Inches"
 defaults write NSGlobalDomain AppleMetricUnits -bool false
 
 # Disable auto-correct
-#defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
+defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 
 # ==============================================
 # Screen
@@ -172,7 +178,9 @@ defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 
 # Finder: show status bar
 defaults write com.apple.finder ShowStatusBar -bool true
-defaults write com.apple.finder ShowPathBar -bool true
+
+# Finder: show path bar
+defaults write com.apple.finder ShowPathbar -bool true
 
 # Finder: allow text selection in Quick Look
 defaults write com.apple.finder QLEnableTextSelection -bool true
@@ -288,12 +296,12 @@ dockutil --add /Applications/Managed\ Software\ Center.app
 # ==============================================
 
 # Top left screen corner → Mission Control
-defaults write com.apple.dock wvous-tl-corner -int 2
-defaults write com.apple.dock wvous-tl-modifier -int 0
+#defaults write com.apple.dock wvous-tl-corner -int 2
+#defaults write com.apple.dock wvous-tl-modifier -int 0
 
 # Top right screen corner → Desktop
-defaults write com.apple.dock wvous-tr-corner -int 4
-defaults write com.apple.dock wvous-tr-modifier -int 0
+#defaults write com.apple.dock wvous-tr-corner -int 4
+#defaults write com.apple.dock wvous-tr-modifier -int 0
 
 # Bottom left screen corner → Start screen saver
 defaults write com.apple.dock wvous-bl-corner -int 5
