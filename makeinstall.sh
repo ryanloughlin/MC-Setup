@@ -19,7 +19,7 @@ mv admin_default_prefs.sh ROOT/Users/localadmin/.admin_default_prefs.sh
 echo "Setting permissions..."
 sudo chown -R root:wheel ROOT
 sudo chmod -R 754 ROOT
-sudo chown -R :admin ROOT/Users/localadmin
+sudo chown -R 499:admin ROOT/Users/localadmin
 sudo chmod -R 774 ROOT/Users/localadmin
 
 # Build the package
