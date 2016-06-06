@@ -108,6 +108,12 @@ sudo chown -R 499:admin /Users/localadmin
 sudo chmod -R 774 /Users/localadmin
 sudo chmod -R 775 /usr/local/sbin
 
+# Skip iCloud & Diagnostic nonsense - copied from larger script by rtrouton
+defaults write Users/localadmin/Library/Preferences/com.apple.SetupAssistant DidSeeCloudSetup -bool TRUE
+defaults write Users/localadmin/Library/Preferences/com.apple.SetupAssistant GestureMovieSeen none
+defaults write Users/localadmin/Library/Preferences/com.apple.SetupAssistant LastSeenCloudProductVersion "${sw_vers}"
+chown 499 Users/localadmin/Library/Preferences/com.apple.SetupAssistant.plist
+
 
 # Remove the LaunchDaemon so the script doesn't run on subsequent boots
 srm /Library/LaunchDaemons/us.nh.k12.portsmouth.firstboot.plist
