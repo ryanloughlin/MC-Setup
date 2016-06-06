@@ -103,5 +103,11 @@ curl -o /Library/Desktop\ Pictures/backgroundDefault2Wide.png http://brego/backg
 sudo tccutil.py -i /usr/bin/osascript
 sudo tccutil.py --insert com.apple.Terminal
 
+# Make sure the permissions for admin prefs launchdaemon and script are correct
+sudo chown -R 499:admin /Users/localadmin
+sudo chmod -R 774 /Users/localadmin
+sudo chmod -R 775 /usr/local/sbin
+
+
 # Remove the LaunchDaemon so the script doesn't run on subsequent boots
 srm /Library/LaunchDaemons/us.nh.k12.portsmouth.firstboot.plist
