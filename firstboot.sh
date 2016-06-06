@@ -103,5 +103,7 @@ sudo tccutil.py --insert org.pmbuko.ADPassMon.plist
 # Make sure the permissions for admin prefs launchdaemon and script are correct
 sudo chmod -R 775 /usr/local/sbin
 
+echo "export PATH=/usr/local/sbin:$PATH" >> /Users/localadmin/.bash_profile
+
 # Remove the LaunchDaemon so the script doesn't run on subsequent boots
 srm /Library/LaunchDaemons/us.nh.k12.portsmouth.firstboot.plist
