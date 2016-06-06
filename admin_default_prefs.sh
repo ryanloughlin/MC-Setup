@@ -9,6 +9,16 @@
 # ==============================================
 
 # ==============================================
+# Shell
+# ==============================================
+
+echo "export PATH=/usr/local/sbin:$PATH" >> ~/.bash.profile
+echo "export CLICOLOR=1" >> ~/.bash.profile
+echo "export LSCOLORS=GxFxCxDxBxegedabagaced" >> ~/.bash.profile
+echo "export PS1='\[\033[1;35m\]\u\[\033[m\]@\[\033[37m\]\h:\[\033[33;1m\]\w\[\033[m\]\$ '" >> ~/.bash.profile
+
+
+# ==============================================
 # Ui Changes
 # ==============================================
 
