@@ -151,7 +151,7 @@ defaults write com.apple.screencapture disable-shadow -bool true
 defaults write NSGlobalDomain AppleFontSmoothing -int 2
 
 # Enable HiDPI display modes (requires restart)
-sudo defaults write /Library/Preferences/com.apple.windowserver DisplayResolutionEnabled -bool true
+#sudo defaults write /Library/Preferences/com.apple.windowserver DisplayResolutionEnabled -bool true
 
 # ==============================================
 # Finder
@@ -406,9 +406,9 @@ defaults write com.apple.digihub com.apple.digihub.blank.dvd.appeared -dict acti
 defaults write com.apple.digihub com.apple.digihub.dvd.video.appeared -dict action 1
 
 # Add osascript & terminal to the Accessability database
-sudo tccutil.py -i /usr/bin/osascript
-sudo tccutil.py --insert com.apple.Terminal
-sudo tccutil.py --insert org.pmbuko.ADPassMon.plist
+#sudo tccutil.py -i /usr/bin/osascript
+#sudo tccutil.py --insert com.apple.Terminal
+#sudo tccutil.py --insert org.pmbuko.ADPassMon.plist
 
 # Set wallpaper to ultra dark gray
 osascript -e 'tell application "Finder" to set desktop picture to POSIX file "/Library/Desktop Pictures/Solid Colors/Solid Gray Pro Ultra Dark.png"'
