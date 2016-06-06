@@ -82,6 +82,7 @@ ln -s /System/Library/CoreServices/Applications/Directory\ Utility.app /Applicat
 ln -s /System/Library/CoreServices/Applications/Screen\ Sharing.app /Applications/Utilities/Screen\ Sharing.app
 ln -s /System/Library/CoreServices/Applications/RAID\ Utility.app /Applications/Utilities/RAID\ Utility.app
 ln -s /System/Library/CoreServices/Applications/Archive\ Utility.app /Applications/Utilities/Archive\ Utility.app
+ln -s /System/Library/CoreServices/Applications/Wireless\ Diagnostics.app /Applications/Utilities/Wireless\ Diagnostics.app
 
 # Reveal IP address, hostname, OS version, etc. when clicking the clock in the login window
 defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo HostName
