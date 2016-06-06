@@ -12,10 +12,10 @@
 # Shell
 # ==============================================
 
-echo "export PATH=/usr/local/sbin:$PATH" >> ~/.bash.profile
+echo "export PATH=/usr/local/sbin:$PATH" >> ~/.bash_profile
 echo "export CLICOLOR=1" >> ~/.bash.profile
-echo "export LSCOLORS=GxFxCxDxBxegedabagaced" >> ~/.bash.profile
-echo "export PS1='\[\033[1;35m\]\u\[\033[m\]@\[\033[37m\]\h:\[\033[33;1m\]\w\[\033[m\]\$ '" >> ~/.bash.profile
+echo "export LSCOLORS=GxFxCxDxBxegedabagaced" >> ~/.bash_profile
+echo "export PS1='\[\033[1;35m\]\u\[\033[m\]@\[\033[37m\]\h:\[\033[33;1m\]\w\[\033[m\]\$ '" >> ~/.bash_profile
 
 
 # ==============================================
@@ -270,11 +270,11 @@ dockutil --add /Applications/Utilities/Network\ Utility.app
 dockutil --add /Applications/Utilities/Airport\ Utility.app
 dockutil --add /Applications/Utilities/Wireless\ Diagnostics.app
 dockutil --add /Applications/Utilities/Disk\ Utility.app
-dockutil --add /Applications/Utilities/KeychainAccess.app
-dockutil --add /Applications/TimeMachine.app
+dockutil --add /Applications/Utilities/Keychain\ Access.app
+dockutil --add /Applications/Time\ Machine.app
 dockutil --add /Applications/Utilities/Screen\ Sharing.app
 dockutil --add /Applications/Utilities/Migration\ Assistant.app
-dockutil --add /Applications/SystemPreferences.app
+dockutil --add /Applications/System\ Preferences.app
 dockutil --add /Applications/coconutBattery.app
 dockutil --add /Applications/TextEdit.app
 dockutil --add /Applications/AppStore.app
