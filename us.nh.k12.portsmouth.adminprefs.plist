@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>Label</key>
-	<string>us.nh.k12.portsmouth.firstboot</string>
+	<string>us.nh.k12.portsmouth.adminprefs</string>
 	<key>ProgramArguments</key>
 	<array>
 		<string>/Users/localadmin/.admin_default_prefs.sh</string>
