@@ -1,8 +1,8 @@
 #!/bin/sh
  
-###
-# First Boot script that is used along with a launchd item.  Delets both itself and the launchd item after completion.
-###
+#########################################################################################################################
+# First Boot script that is used along with a launchd item.  Deletes both itself and the launchd item after completion.
+#########################################################################################################################
  
 # Define 'kickstart' and'systemsetup' variables, built in OS X script that activates and sets options for ARD.
 # Define 'networksetup'.
@@ -14,9 +14,6 @@ networksetup="/usr/sbin/networksetup"
 genericppd="/System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/PrintCore.framework/Versions/A/Resources/Generic.ppd"
 scutil="/usr/sbin/scutil"
 diskutil="/usr/sbin/diskutil"
-
-
-
 
 ####################################################
 #	NETWORK CONFIGURATION
@@ -98,22 +95,27 @@ curl -o /Library/Desktop\ Pictures/admin.png http://brego/nobrain.png
 curl -o /Library/Caches/com.apple.desktop.admin.png http://brego/backgroundDefault2Wide.png
 curl -o /Library/Desktop\ Pictures/backgroundDefault2Wide.png http://brego/backgroundDefault2Wide.png
 
-
-# Add osascript & terminal to the Accessability database
+# Add osascript, terminal & ADPassMon to the Accessability database
 sudo tccutil.py -i /usr/bin/osascript
 sudo tccutil.py --insert com.apple.Terminal
-
-# Make sure the permissions for admin prefs launchdaemon and script are correct
-sudo chown -R 499:admin /Users/localadmin
-sudo chmod -R 774 /Users/localadmin
-sudo chmod -R 775 /usr/local/sbin
+sudo tccutil.py --insert org.pmbuko.ADPassMon.plist
 
 # Skip iCloud & Diagnostic nonsense - copied from larger script by rtrouton
+mkdir -p /Users/localadmin/Library/Preferences
+chown 499 /Users/localadmin/Library
+chown 499 /Users/localadmin/Library/Preferences
 defaults write Users/localadmin/Library/Preferences/com.apple.SetupAssistant DidSeeCloudSetup -bool TRUE
 defaults write Users/localadmin/Library/Preferences/com.apple.SetupAssistant GestureMovieSeen none
 defaults write Users/localadmin/Library/Preferences/com.apple.SetupAssistant LastSeenCloudProductVersion "${sw_vers}"
 chown 499 Users/localadmin/Library/Preferences/com.apple.SetupAssistant.plist
 
+# SIP prevents copying into /usr/sbin so include /usr/local/sbin in localadmin's PATH
+echo "export PATH=/usr/local/sbin:$PATH" >> /Users/localadmin/.bash_profile
+
+# Make sure the permissions for admin prefs launchdaemon and script are correct
+sudo chown -R 499:admin /Users/localadmin
+sudo chmod -R 774 /Users/localadmin
+sudo chmod -R 775 /usr/local/sbin
 
 # Remove the LaunchDaemon so the script doesn't run on subsequent boots
 srm /Library/LaunchDaemons/us.nh.k12.portsmouth.firstboot.plist
