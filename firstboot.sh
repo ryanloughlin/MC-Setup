@@ -114,5 +114,33 @@ sudo tccutil.py -i /usr/bin/osascript
 sudo tccutil.py --insert com.apple.Terminal
 sudo tccutil.py --insert org.pmbuko.ADPassMon.plist
 
+# borrowed from timsutton
+# suppress the diagnostic setup message at login
+SUBMIT_TO_APPLE=YES
+SUBMIT_TO_APP_DEVELOPERS=NO
+
+PlistBuddy="/usr/libexec/PlistBuddy"
+os_rev_major=`/usr/bin/sw_vers -productVersion | awk -F "." '{ print $2 }'`
+if [ $os_rev_major -ge 10 ]; then
+  CRASHREPORTER_SUPPORT="/Library/Application Support/CrashReporter"
+  CRASHREPORTER_DIAG_PLIST="${CRASHREPORTER_SUPPORT}/DiagnosticMessagesHistory.plist"
+
+  if [ ! -d "${CRASHREPORTER_SUPPORT}" ]; then
+    mkdir "${CRASHREPORTER_SUPPORT}"
+    chmod 775 "${CRASHREPORTER_SUPPORT}"
+    chown root:admin "${CRASHREPORTER_SUPPORT}"
+  fi
+
+  for key in AutoSubmit AutoSubmitVersion ThirdPartyDataSubmit ThirdPartyDataSubmitVersion; do
+    $PlistBuddy -c "Delete :$key" "${CRASHREPORTER_DIAG_PLIST}" 2> /dev/null
+  done
+
+  $PlistBuddy -c "Add :AutoSubmit bool ${SUBMIT_TO_APPLE}" "${CRASHREPORTER_DIAG_PLIST}"
+  $PlistBuddy -c "Add :AutoSubmitVersion integer 4" "${CRASHREPORTER_DIAG_PLIST}"
+  $PlistBuddy -c "Add :ThirdPartyDataSubmit bool ${SUBMIT_TO_APP_DEVELOPERS}" "${CRASHREPORTER_DIAG_PLIST}"
+  $PlistBuddy -c "Add :ThirdPartyDataSubmitVersion integer 4" "${CRASHREPORTER_DIAG_PLIST}"
+fi
+
+
 # Remove the LaunchDaemon so the script doesn't run on subsequent boots
 srm /Library/LaunchDaemons/us.nh.k12.portsmouth.firstboot.plist
