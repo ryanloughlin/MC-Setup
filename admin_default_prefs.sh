@@ -8,6 +8,9 @@
 #
 # ==============================================
 
+# Keep-alive: update existing `sudo` time stamp until `.osx` has finished
+while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+
 # ==============================================
 # Shell
 # ==============================================
@@ -408,8 +411,13 @@ defaults write com.apple.digihub com.apple.digihub.dvd.video.appeared -dict acti
 # Set wallpaper to ultra dark gray
 osascript -e 'tell application "Finder" to set desktop picture to POSIX file "/Library/Desktop Pictures/Solid Colors/Solid Gray Pro Ultra Dark.png"'
 
+# Add osascript & terminal to the Accessability database
+sudo tccutil.py -i /usr/bin/osascript
+sudo tccutil.py --insert com.apple.Terminal
+sudo tccutil.py --insert org.pmbuko.ADPassMon.plist
+
 # Kill all affected applications
 killall Dock && killall Finder && killall SystemUIServer
 
 # Remove the launch daemon so the script doesn't run on subsequent logins
-srm /Users/localadmin/Library/LaunchDaemons/us.nh.k12.portsmouth.adminprefs.plist
+srm /Users/localadmin/Library/LaunchAgents/us.nh.k12.portsmouth.adminprefs.plist
