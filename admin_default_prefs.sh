@@ -414,7 +414,7 @@ osascript -e 'tell application "Finder" to set desktop picture to POSIX file "/L
 # Add osascript & terminal to the Accessability database
 sudo tccutil.py -i /usr/bin/osascript
 sudo tccutil.py --insert com.apple.Terminal
-sudo tccutil.py --insert org.pmbuko.ADPassMon.plist
+sudo tccutil.py --insert org.pmbuko.ADPassMon
 
 # Kill all affected applications
 killall Dock && killall Finder && killall SystemUIServer
