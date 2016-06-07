@@ -8,11 +8,7 @@
 	<array>
 		<string>/Users/localadmin/.admin_default_prefs.sh</string>
 	</array>
-	<key>QueueDirectories</key>
-	<array/>
 	<key>RunAtLoad</key>
 	<true/>
-	<key>WatchPaths</key>
-	<array/>
 </dict>
 </plist>
