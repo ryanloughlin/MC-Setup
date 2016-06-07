@@ -95,15 +95,19 @@ curl -o /Library/Desktop\ Pictures/admin.png http://brego/nobrain.png
 curl -o /Library/Caches/com.apple.desktop.admin.png http://brego/backgroundDefault2Wide.png
 curl -o /Library/Desktop\ Pictures/backgroundDefault2Wide.png http://brego/backgroundDefault2Wide.png
 
-# Add osascript, terminal & ADPassMon to the Accessability database
-sudo tccutil.py -i /usr/bin/osascript
-sudo tccutil.py --insert com.apple.Terminal
-sudo tccutil.py --insert org.pmbuko.ADPassMon.plist
-
 # Make sure the permissions for admin prefs launchdaemon and script are correct
 sudo chmod -R 775 /usr/local/sbin
 
+# Quick changes to localadmin account
+createhomedir -c -u localadmin
 echo "export PATH=/usr/local/sbin:$PATH" >> /Users/localadmin/.bash_profile
+defaults write Users/localadmin/Library/Preferences/com.apple.SetupAssistant DidSeeCloudSetup -bool TRUE
+defaults write Users/localadmin/Library/Preferences/com.apple.SetupAssistant GestureMovieSeen none
+defaults write Users/localadmin/Library/Preferences/com.apple.SetupAssistant LastSeenCloudProductVersion "${sw_vers}"
+chown -R 499:admin /Users/localadmin
+chmod -R 774 /Users/localadmin
+touch /var/db/.AppleSetupDone
+touch /var/db/.AppleDiagnosticsSetupDone
 
 # Remove the LaunchDaemon so the script doesn't run on subsequent boots
 srm /Library/LaunchDaemons/us.nh.k12.portsmouth.firstboot.plist
