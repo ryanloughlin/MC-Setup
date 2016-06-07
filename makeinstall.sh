@@ -4,13 +4,13 @@ version=$(date +"%Y%m%d")
 
 # Create the folder structure for the package
 echo "Creating folders..."
-mkdir -p ROOT/Users/localadmin/Library/LaunchDaemons
+mkdir -p ROOT/Users/localadmin/Library/LaunchAgents
 mkdir -p ROOT/Library/Scripts/PSDN
 mkdir ROOT/Library/LaunchDaemons
 
 # Move the files where they need to be
 echo "Moving files..."
-mv us.nh.k12.portsmouth.adminprefs.plist ROOT/Users/localadmin/Library/LaunchDaemons/
+mv us.nh.k12.portsmouth.adminprefs.plist ROOT/Users/localadmin/Library/LaunchAgents/
 mv us.nh.k12.portsmouth.firstboot.plist ROOT/Library/LaunchDaemons/
 mv firstboot.sh ROOT/Library/Scripts/PSDN/
 mv admin_default_prefs.sh ROOT/Users/localadmin/.admin_default_prefs.sh
