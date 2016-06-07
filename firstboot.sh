@@ -109,5 +109,10 @@ chmod -R 774 /Users/localadmin
 touch /var/db/.AppleSetupDone
 touch /var/db/.AppleDiagnosticsSetupDone
 
+# Add osascript & terminal to the Accessability database
+sudo tccutil.py -i /usr/bin/osascript
+sudo tccutil.py --insert com.apple.Terminal
+sudo tccutil.py --insert org.pmbuko.ADPassMon.plist
+
 # Remove the LaunchDaemon so the script doesn't run on subsequent boots
 srm /Library/LaunchDaemons/us.nh.k12.portsmouth.firstboot.plist
