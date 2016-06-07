@@ -226,6 +226,30 @@ defaults write com.apple.NetworkBrowser BrowseAllInterfaces -bool true
 # Dock
 # ==============================================
 
+# Use dockutil to empty and then rebuild the dock
+dockutil --remove all
+killall Dock
+
+dockutil --add /Applications/Utilities/System\ Information.app
+dockutil --add /Applications/Safari.app
+dockutil --add /Applications/Utilities/Terminal.app
+dockutil --add /Applications/Utilities/Console.app
+dockutil --add /Applications/Utilities/Activity\ Monitor.app
+dockutil --add /Applications/Utilities/Directory\ Utility.app
+dockutil --add /Applications/Utilities/Network\ Utility.app
+dockutil --add /Applications/Utilities/Airport\ Utility.app
+dockutil --add /Applications/Utilities/Wireless\ Diagnostics.app
+dockutil --add /Applications/Utilities/Disk\ Utility.app
+dockutil --add /Applications/Utilities/Keychain\ Access.app
+dockutil --add /Applications/Time\ Machine.app
+dockutil --add /Applications/Utilities/Screen\ Sharing.app
+dockutil --add /Applications/Utilities/Migration\ Assistant.app
+dockutil --add /Applications/System\ Preferences.app
+dockutil --add /Applications/coconutBattery.app
+dockutil --add /Applications/TextEdit.app
+dockutil --add /Applications/AppStore.app
+dockutil --add /Applications/Managed\ Software\ Center.app
+
 # Enable highlight hover effect for the grid view of a stack (Dock)
 defaults write com.apple.dock mouse-over-hilte-stack -bool true
 
@@ -268,31 +292,6 @@ defaults write com.apple.dock autohide -bool false
 # Make Dock icons of hidden applications translucent
 defaults write com.apple.dock showhidden -bool true
 
-# Use dockutil to empty and then rebuild the dock
-dockutil --remove all
-dockutil --add /Applications/Utilities/System\ Information.app
-dockutil --add /Applications/Safari.app
-dockutil --add /Applications/Utilities/Terminal.app
-dockutil --add /Applications/Utilities/Console.app
-dockutil --add /Applications/Utilities/Activity\ Monitor.app
-dockutil --add /Applications/Utilities/Directory\ Utility.app
-dockutil --add /Applications/Utilities/Network\ Utility.app
-dockutil --add /Applications/Utilities/Airport\ Utility.app
-dockutil --add /Applications/Utilities/Wireless\ Diagnostics.app
-dockutil --add /Applications/Utilities/Disk\ Utility.app
-dockutil --add /Applications/Utilities/Keychain\ Access.app
-dockutil --add /Applications/Time\ Machine.app
-dockutil --add /Applications/Utilities/Screen\ Sharing.app
-dockutil --add /Applications/Utilities/Migration\ Assistant.app
-dockutil --add /Applications/System\ Preferences.app
-dockutil --add /Applications/coconutBattery.app
-dockutil --add /Applications/TextEdit.app
-dockutil --add /Applications/AppStore.app
-dockutil --add /Applications/Managed\ Software\ Center.app
-
-# Reset Launchpad
-# find ~/Library/Application Support/Dock -name "*.db" -maxdepth 1 -delete
-
 # ==============================================
 # Hot corners
 # ==============================================
@@ -306,8 +305,8 @@ dockutil --add /Applications/Managed\ Software\ Center.app
 #defaults write com.apple.dock wvous-tr-modifier -int 0
 
 # Bottom left screen corner → Start screen saver
-defaults write com.apple.dock wvous-bl-corner -int 5
-defaults write com.apple.dock wvous-bl-modifier -int 0
+defaults write com.apple.dock wvous-br-corner -int 5
+defaults write com.apple.dock wvous-br-modifier -int 0
 
 # ==============================================
 # Safari & WebKit
@@ -419,5 +418,5 @@ sudo tccutil.py --insert org.pmbuko.ADPassMon
 # Kill all affected applications
 killall Dock && killall Finder && killall SystemUIServer
 
-# Remove the launch daemon so the script doesn't run on subsequent logins
-srm /Users/localadmin/Library/LaunchAgents/us.nh.k12.portsmouth.adminprefs.plist
+# Remove the launch agent so the script doesn't run on subsequent logins
+rm /Users/localadmin/Library/LaunchAgents/us.nh.k12.portsmouth.adminprefs.plist
