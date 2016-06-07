@@ -229,7 +229,7 @@ defaults write com.apple.NetworkBrowser BrowseAllInterfaces -bool true
 # Use dockutil to empty and then rebuild the dock
 dockutil --remove all
 killall Dock
-
+sleep 3
 dockutil --add /Applications/Utilities/System\ Information.app
 dockutil --add /Applications/Safari.app
 dockutil --add /Applications/Utilities/Terminal.app
@@ -354,6 +354,15 @@ defaults write com.apple.Safari WebKitInitialTimedLayoutDelay 0.25
 # ==============================================
 # Terminal
 # ==============================================
+
+curl -o /tmp/Custom.terminal.gz http://brego/files/Custom.terminal.gz
+gunzip /tmp/Custom.terminal.gz
+
+open "/tmp/Custom.terminal.gz"
+sleep 1
+
+defaults write com.apple.terminal "Default Window Settings" -string "Custom"
+defaults write com.apple.terminal "Startup Window Settings" -string "Custom"
 
 # Enable "focus follows mouse" for Terminal.app and all X11 apps i.e. hover over a window and start typing in it without clicking first
 defaults write com.apple.terminal FocusFollowsMouse -bool true
