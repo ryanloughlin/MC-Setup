@@ -405,11 +405,6 @@ defaults write com.apple.digihub com.apple.digihub.blank.dvd.appeared -dict acti
 # Disable video DVD automatic action.
 defaults write com.apple.digihub com.apple.digihub.dvd.video.appeared -dict action 1
 
-# Add osascript & terminal to the Accessability database
-sudo tccutil.py -i /usr/bin/osascript
-sudo tccutil.py --insert com.apple.Terminal
-sudo tccutil.py --insert org.pmbuko.ADPassMon.plist
-
 # Set wallpaper to ultra dark gray
 osascript -e 'tell application "Finder" to set desktop picture to POSIX file "/Library/Desktop Pictures/Solid Colors/Solid Gray Pro Ultra Dark.png"'
 
