@@ -14,6 +14,7 @@ mv us.nh.k12.portsmouth.adminprefs.plist ROOT/Users/localadmin/Library/LaunchAge
 mv us.nh.k12.portsmouth.firstboot.plist ROOT/Library/LaunchDaemons/
 mv firstboot.sh ROOT/Library/Scripts/PSDN/
 mv admin_default_prefs.sh ROOT/Users/localadmin/.admin_default_prefs.sh
+mv admin_default_prefs.sh ROOT/Users/localadmin/.admin_dock.sh
 
 # Set appropriate permissions
 echo "Setting permissions..."
