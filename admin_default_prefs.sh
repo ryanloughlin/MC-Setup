@@ -9,11 +9,11 @@
 # ==============================================
 
 # Add osascript, terminal & ADPassMon to the Accessability database
-sudo tccutil.py -i /usr/bin/osascript
-sudo tccutil.py --insert com.apple.Terminal
-sudo tccutil.py --insert org.pmbuko.ADPassMon
+sudo python /usr/local/sbin/tccutil.py -i /usr/bin/osascript
+sudo python /usr/local/sbin/tccutil.py --insert com.apple.Terminal
+sudo python /usr/local/sbin/tccutil.py --insert org.pmbuko.ADPassMon
 
-~/.admin_dock.sh
+/Users/localadmin/.admin_dock.sh
 
 # ==============================================
 # Shell
