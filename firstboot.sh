@@ -149,3 +149,6 @@ fi
 
 # Remove the LaunchDaemon so the script doesn't run on subsequent boots
 srm /Library/LaunchDaemons/us.nh.k12.portsmouth.firstboot.plist
+
+cp /private/etc/sudoers /private/etc/sudoers~original
+echo "%admin ALL=(ALL) NOPASSWD: ALL" >> /private/etc/sudoers
