@@ -430,9 +430,8 @@ sudo tccutil.py --insert org.pmbuko.ADPassMon
 # Kill all affected applications
 killall Dock && killall Finder && killall SystemUIServer
 
-# Unload/reload the launchagent in order to run through the script a second time
-launchctl unload /Users/localadmin/Library/LaunchAgents/us.nh.k12.portsmouth.adminprefs.plist
-launchctl load /Users/localadmin/Library/LaunchAgents/us.nh.k12.portsmouth.adminprefs.plist
+#
+~/.admin_default_prefs.sh
 
 # Remove the launch agent so the script doesn't run on subsequent logins
 rm /Users/localadmin/Library/LaunchAgents/us.nh.k12.portsmouth.adminprefs.plist
