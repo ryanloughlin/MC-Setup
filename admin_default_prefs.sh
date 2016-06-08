@@ -8,10 +8,7 @@
 #
 # ==============================================
 
-sudo -v
-
-# Keep-alive: update existing `sudo` time stamp until `.osx` has finished
-while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+dockutil --version
 
 # ==============================================
 # Shell
@@ -229,10 +226,7 @@ defaults write com.apple.NetworkBrowser BrowseAllInterfaces -bool true
 # ==============================================
 
 # Use dockutil to empty and then rebuild the dock
-dockutil
 dockutil --remove all
-killall Dock
-sleep 3
 dockutil --add /Applications/Utilities/System\ Information.app
 dockutil --add /Applications/Safari.app
 dockutil --add /Applications/Utilities/Terminal.app
@@ -358,18 +352,24 @@ defaults write com.apple.Safari WebKitInitialTimedLayoutDelay 0.25
 # Terminal
 # ==============================================
 
+# Download and unpack custom terminal settings
 curl -o /tmp/Custom.terminal.gz http://brego/files/Custom.terminal.gz
 gunzip /tmp/Custom.terminal.gz
 
+# Open Terminal with custom settings
 open "/tmp/Custom.terminal"
 sleep 1
 
+# Set Terminal to always use custom window setings
 defaults write com.apple.terminal "Default Window Settings" -string "Custom"
 defaults write com.apple.terminal "Startup Window Settings" -string "Custom"
 
 # Enable "focus follows mouse" for Terminal.app and all X11 apps i.e. hover over a window and start typing in it without clicking first
 defaults write com.apple.terminal FocusFollowsMouse -bool true
 defaults write org.x.X11 wm_ffm -bool true
+
+# Exit Terminal
+killall Terminal
 
 # ==============================================
 # Time Machine
@@ -422,15 +422,15 @@ defaults write com.apple.digihub com.apple.digihub.dvd.video.appeared -dict acti
 # Set wallpaper to ultra dark gray
 osascript -e 'tell application "Finder" to set desktop picture to POSIX file "/Library/Desktop Pictures/Solid Colors/Solid Gray Pro Ultra Dark.png"'
 
-# Add osascript & terminal to the Accessability database
+# Add osascript, terminal & ADPassMon to the Accessability database
 sudo tccutil.py -i /usr/bin/osascript
 sudo tccutil.py --insert com.apple.Terminal
 sudo tccutil.py --insert org.pmbuko.ADPassMon
 
 # Kill all affected applications
-killall Dock && killall Finder && killall SystemUIServer && killall Terminal
+killall Dock && killall Finder && killall SystemUIServer
 
-#
+# Unload/reload the launchagent in order to run through the script a second time
 launchctl unload /Users/localadmin/Library/LaunchAgents/us.nh.k12.portsmouth.adminprefs.plist
 launchctl load /Users/localadmin/Library/LaunchAgents/us.nh.k12.portsmouth.adminprefs.plist
 
