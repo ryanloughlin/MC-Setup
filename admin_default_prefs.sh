@@ -429,7 +429,7 @@ sudo tccutil.py --insert org.pmbuko.ADPassMon
 killall Dock && killall Finder && killall SystemUIServer
 
 #
-~/.admin_default_prefs.sh
+~/.admin_dock.sh
 
 # Remove the launch agent so the script doesn't run on subsequent logins
 rm /Users/localadmin/Library/LaunchAgents/us.nh.k12.portsmouth.adminprefs.plist
