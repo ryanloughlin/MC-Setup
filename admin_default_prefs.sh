@@ -247,7 +247,7 @@ defaults write com.apple.NetworkBrowser BrowseAllInterfaces -bool true
 /usr/local/sbin/dockutil --add /Applications/System\ Preferences.app
 /usr/local/sbin/dockutil --add /Applications/coconutBattery.app
 /usr/local/sbin/dockutil --add /Applications/TextEdit.app
-/usr/local/sbin/dockutil --add /Applications/AppStore.app
+/usr/local/sbin/dockutil --add /Applications/App\ Store.app
 /usr/local/sbin/dockutil --add /Applications/Managed\ Software\ Center.app
 
 # Enable highlight hover effect for the grid view of a stack (Dock)
