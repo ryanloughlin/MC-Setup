@@ -162,6 +162,9 @@ defaults write NSGlobalDomain AppleFontSmoothing -int 2
 # Finder
 # ==============================================
 
+# Finder: Set new windows to open to the computer
+defaults write com.apple.finder NewWindowTarget -string "PfCm"
+
 # Finder: allow quitting via ⌘ + Q; doing so will also hide desktop icons
 defaults write com.apple.finder QuitMenuItem -bool true
 
