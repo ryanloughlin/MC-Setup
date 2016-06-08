@@ -93,9 +93,9 @@ sudo chflags hidden /Applications/Game\ Center.app/
 sudo chflags hidden /Applications/Utilities/Boot\ Camp\ Assistant.app/
 
 # Download custom admin and district wallpaper
-curl -o /Library/Desktop\ Pictures/admin.png http://brego/images/admin.png
-curl -o /Library/Caches/com.apple.desktop.admin.png http://brego/images/default.png
-curl -o /Library/Desktop\ Pictures/backgroundDefault2Wide.png http://brego/images/default.png
+curl -o /Library/Desktop\ Pictures/admin.png http://brego/files/images/admin.png
+curl -o /Library/Caches/com.apple.desktop.admin.png http://brego/files/images/default.png
+curl -o /Library/Desktop\ Pictures/backgroundDefault2Wide.png http://brego/files/images/default.png
 
 # Make sure the permissions for admin prefs launchdaemon and script are correct
 sudo chmod -R 775 /usr/local/sbin
