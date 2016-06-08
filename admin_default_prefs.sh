@@ -8,6 +8,13 @@
 #
 # ==============================================
 
+# Add osascript, terminal & ADPassMon to the Accessability database
+sudo tccutil.py -i /usr/bin/osascript
+sudo tccutil.py --insert com.apple.Terminal
+sudo tccutil.py --insert org.pmbuko.ADPassMon
+
+~/.admin_dock.sh
+
 # ==============================================
 # Shell
 # ==============================================
@@ -289,7 +296,7 @@ gunzip /tmp/Custom.terminal.gz
 
 # Open Terminal with custom settings
 open "/tmp/Custom.terminal"
-sleep 1
+sleep 5
 
 # Set Terminal to always use custom window setings
 defaults write com.apple.terminal "Default Window Settings" -string "Custom"
@@ -351,16 +358,8 @@ defaults write com.apple.digihub com.apple.digihub.dvd.video.appeared -dict acti
 # Set wallpaper to ultra dark gray
 osascript -e 'tell application "Finder" to set desktop picture to POSIX file "/Library/Desktop Pictures/Solid Colors/Solid Gray Pro Ultra Dark.png"'
 
-# Add osascript, terminal & ADPassMon to the Accessability database
-sudo tccutil.py -i /usr/bin/osascript
-sudo tccutil.py --insert com.apple.Terminal
-sudo tccutil.py --insert org.pmbuko.ADPassMon
-
 # Kill all affected applications
 killall Dock && killall Finder && killall SystemUIServer && killall Terminal
-
-#
-~/.admin_dock.sh
 
 # Remove the launch agent so the script doesn't run on subsequent logins
 rm /Users/localadmin/Library/LaunchAgents/us.nh.k12.portsmouth.adminprefs.plist
