@@ -33,7 +33,10 @@ $networksetup -setv6LinkLocal Wi-Fi
 $networksetup -setsearchdomains Wi-Fi acad.psdn.portsmouth.k12.nh.us admin.psdn.portsmouth.k12.nh.us co.psdn.portsmouth.k12.nh.us psdn.portsmouth.k12.nh.us portsmouth.k12.nh.us
 $networksetup -setsearchdomains Ethernet acad.psdn.portsmouth.k12.nh.us admin.psdn.portsmouth.k12.nh.us co.psdn.portsmouth.k12.nh.us psdn.portsmouth.k12.nh.us 
 
+# Make sure wireless is turned on
 $networksetup -setairportpower en1 on
+
+# Connect to the proper SSID
 $networksetup -setairportnetwork en1 PSDNet u2blackbird
 
 $networksetup -ordernetworkservices Ethernet Wi-Fi "Bluetooth PAN" "Thunderbolt Bridge" Firewire
@@ -87,7 +90,6 @@ defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo HostName
 
 # Hide the following applications: Game Center, Time Machine, Boot Camp
 sudo chflags hidden /Applications/Game\ Center.app/
-# sudo chflags hidden /Applications/Time\ Machine.app/
 sudo chflags hidden /Applications/Utilities/Boot\ Camp\ Assistant.app/
 
 # Download custom admin and district wallpaper
@@ -98,25 +100,29 @@ curl -o /Library/Desktop\ Pictures/backgroundDefault2Wide.png http://brego/backg
 # Make sure the permissions for admin prefs launchdaemon and script are correct
 sudo chmod -R 775 /usr/local/sbin
 
-# Quick changes to localadmin account
+####################################################
+#	LOCAL ADMINISTRATOR
+####################################################
+# Force creation of the home directory
 createhomedir -c -u localadmin
+
+# Add to PATH so that NCutil, tccutil & dockutil will work later
 echo "export PATH=/usr/local/sbin:$PATH" >> /Users/localadmin/.bash_profile
+
+# Create file needed to skip iCloud & Diagnostics setup on login
 defaults write Users/localadmin/Library/Preferences/com.apple.SetupAssistant DidSeeCloudSetup -bool TRUE
 defaults write Users/localadmin/Library/Preferences/com.apple.SetupAssistant GestureMovieSeen none
 defaults write Users/localadmin/Library/Preferences/com.apple.SetupAssistant LastSeenCloudProductVersion "${sw_vers}"
-chown -R 499:admin /Users/localadmin
-chmod -R 774 /Users/localadmin
 touch /var/db/.AppleSetupDone
 touch /var/db/.AppleDiagnosticsSetupDone
 
-# Add osascript & terminal to the Accessability database
-sudo tccutil.py -i /usr/bin/osascript
-sudo tccutil.py --insert com.apple.Terminal
-sudo tccutil.py --insert org.pmbuko.ADPassMon.plist
+# Set owner/permissions on home directory to what we want
+chown -R 499:admin /Users/localadmin
+chmod -R 774 /Users/localadmin
 
 # borrowed from timsutton
 # suppress the diagnostic setup message at login
-SUBMIT_TO_APPLE=YES
+SUBMIT_TO_APPLE=NO
 SUBMIT_TO_APP_DEVELOPERS=NO
 
 PlistBuddy="/usr/libexec/PlistBuddy"
@@ -140,7 +146,6 @@ if [ $os_rev_major -ge 10 ]; then
   $PlistBuddy -c "Add :ThirdPartyDataSubmit bool ${SUBMIT_TO_APP_DEVELOPERS}" "${CRASHREPORTER_DIAG_PLIST}"
   $PlistBuddy -c "Add :ThirdPartyDataSubmitVersion integer 4" "${CRASHREPORTER_DIAG_PLIST}"
 fi
-
 
 # Remove the LaunchDaemon so the script doesn't run on subsequent boots
 srm /Library/LaunchDaemons/us.nh.k12.portsmouth.firstboot.plist
