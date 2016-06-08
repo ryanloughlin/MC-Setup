@@ -356,7 +356,8 @@ defaults write com.apple.digihub com.apple.digihub.blank.dvd.appeared -dict acti
 defaults write com.apple.digihub com.apple.digihub.dvd.video.appeared -dict action 1
 
 # Set wallpaper to ultra dark gray
-osascript -e 'tell application "Finder" to set desktop picture to POSIX file "/Library/Desktop Pictures/Solid Colors/Solid Gray Pro Ultra Dark.png"'
+# osascript -e 'tell application "Finder" to set desktop picture to POSIX file "/Library/Desktop Pictures/Solid Colors/Solid Gray Pro Ultra Dark.png"'
+osascript -e 'tell application "Finder" to set desktop picture to POSIX file "/Library/Desktop Pictures/admin.png"'
 
 # Kill all affected applications
 killall Dock && killall Finder && killall SystemUIServer && killall Terminal
