@@ -248,11 +248,14 @@ defaults write com.apple.NetworkBrowser BrowseAllInterfaces -bool true
 /usr/local/sbin/dockutil --add /Applications/Utilities/Screen\ Sharing.app
 /usr/local/sbin/dockutil --add /Applications/Utilities/Migration\ Assistant.app
 /usr/local/sbin/dockutil --add /Applications/System\ Preferences.app
-/usr/local/sbin/dockutil --add /Applications/coconutBattery.app
 /usr/local/sbin/dockutil --add /Applications/TextEdit.app
 /usr/local/sbin/dockutil --add /Applications/App\ Store.app
 /usr/local/sbin/dockutil --add /Applications/Managed\ Software\ Center.app
 
+computerType=$(defaults read /Library/Preferences/com.apple.RemoteDesktop Text4)
+if [ "$computerType" == "laptop" ]; then
+/usr/local/sbin/dockutil --add /Applications/coconutBattery.app
+fi
 # Enable highlight hover effect for the grid view of a stack (Dock)
 defaults write com.apple.dock mouse-over-hilte-stack -bool true
 
@@ -297,7 +300,6 @@ defaults write com.apple.dock showhidden -bool true
 
 killall Dock
 
-say "Dock configured"
 
 # ==============================================
 # Hot corners
