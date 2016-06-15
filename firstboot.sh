@@ -16,6 +16,24 @@ scutil="/usr/sbin/scutil"
 diskutil="/usr/sbin/diskutil"
 
 ####################################################
+#	DETERMINE MACHINE TYPE
+####################################################
+
+# Get the model and search for Book in the result
+is_laptop=$(sysctl -n hw.model | grep Book)
+
+# If the model contains Book it's a laptop, otherwise assume it's a desktop
+if [ "$IS_LAPTOP" != "" ]; then
+computerType=laptop
+else
+computerType=desktop
+fi
+
+# Write the computer type to the 4th ARD computer field for later reference
+defaults write /Library/Preferences/com.apple.RemoteDesktop Text4 - string "$computerType"
+
+
+####################################################
 #	NETWORK CONFIGURATION
 ####################################################
 # Check for network interfaces (on some models you might end up with no network connection otherwise)
@@ -88,6 +106,12 @@ ln -s /Library/Desktop\ Pictures/backgroundDefault2Wide.png /System/Library/Core
 # Reveal IP address, hostname, OS version, etc. when clicking the clock in the login window
 defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo HostName
 
+# Set login window to display name and password fields
+defaults write /Library/Preferences/com.apple.loginwindow SHOWFULLNAME -bool true
+
+# Enable Fast User Switching
+defaults write /Library/Preferences/.GlobalPreferences MultipleSessionEnabled -bool YES
+
 # Hide the following applications: Game Center, Time Machine, Boot Camp
 sudo chflags hidden /Applications/Game\ Center.app/
 sudo chflags hidden /Applications/Utilities/Boot\ Camp\ Assistant.app/
@@ -152,3 +176,5 @@ srm /Library/LaunchDaemons/us.nh.k12.portsmouth.firstboot.plist
 
 cp /private/etc/sudoers /private/etc/sudoers~original
 echo "%admin ALL=(ALL) NOPASSWD: ALL" >> /private/etc/sudoers
+
+
