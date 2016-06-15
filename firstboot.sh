@@ -24,14 +24,27 @@ is_laptop=$(sysctl -n hw.model | grep Book)
 
 # If the model contains Book it's a laptop, otherwise assume it's a desktop
 if [ "$IS_LAPTOP" != "" ]; then
-computerType=laptop
+computerModel=laptop
 else
-computerType=desktop
+computerModel=desktop
 fi
 
-# Write the computer type to the 4th ARD computer field for later reference
-defaults write /Library/Preferences/com.apple.RemoteDesktop Text4 - string "$computerType"
+# Write the computer model to the 4th ARD computer field for later reference
+defaults write /Library/Preferences/com.apple.RemoteDesktop Text4 - string "$computerModel"
 
+
+# Get the computer name
+compName=$(scutil --get ComputerName)
+
+# See if the computer name contains 'Lab'
+if [[ $compName == *"Lab"* ]]; then
+computerType=lab
+else
+computerType=user
+fi
+
+# Write the computer type to the 3rd ARD computer field for later reference
+defaults write /Library/Preferences/com.apple.RemoteDesktop Text3 - string "$computerType"
 
 ####################################################
 #	NETWORK CONFIGURATION
