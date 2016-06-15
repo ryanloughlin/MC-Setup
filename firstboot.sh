@@ -30,7 +30,7 @@ computerModel=desktop
 fi
 
 # Write the computer model to the 4th ARD computer field for later reference
-defaults write /Library/Preferences/com.apple.RemoteDesktop Text4 - string "$computerModel"
+defaults write /Library/Preferences/com.apple.RemoteDesktop Text4 -string $computerModel
 
 
 # Get the computer name
@@ -44,7 +44,7 @@ computerType=user
 fi
 
 # Write the computer type to the 3rd ARD computer field for later reference
-defaults write /Library/Preferences/com.apple.RemoteDesktop Text3 - string "$computerType"
+defaults write /Library/Preferences/com.apple.RemoteDesktop Text3 -string $computerType
 
 ####################################################
 #	NETWORK CONFIGURATION
