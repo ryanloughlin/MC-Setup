@@ -23,7 +23,7 @@ diskutil="/usr/sbin/diskutil"
 is_laptop=$(sysctl -n hw.model | grep Book)
 
 # If the model contains Book it's a laptop, otherwise assume it's a desktop
-if [ "$IS_LAPTOP" != "" ]; then
+if [ "$is_laptop" != "" ]; then
 computerModel=laptop
 else
 computerModel=desktop
