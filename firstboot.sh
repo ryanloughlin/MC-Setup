@@ -178,3 +178,15 @@ cp /private/etc/sudoers /private/etc/sudoers~original
 echo "%admin ALL=(ALL) NOPASSWD: ALL" >> /private/etc/sudoers
 
 
+####################################################
+#	LOCAL USERS & GROUPS
+####################################################
+
+# Create a local group for computer teachers
+dscl . create /Groups/cteach
+dscl . create /Groups/cteach RealName "Computer Teachers"
+dscl . create /Groups/cteach passwd "*"
+dscl . create /Groups/cteach gid 800
+
+# Add the computer teachers group to the admin group
+dscl . append /Groups/admin GroupMembership cteach
