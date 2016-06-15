@@ -195,7 +195,7 @@ echo "%admin ALL=(ALL) NOPASSWD: ALL" >> /private/etc/sudoers
 #	LOCAL USERS & GROUPS
 ####################################################
 
-if [ "$computerType" != "lab" ]; then
+if [ "$computerType" == "lab" ]; then
 # Create a local group for computer teachers
 dscl . create /Groups/cteach
 dscl . create /Groups/cteach RealName "Computer Teachers"
