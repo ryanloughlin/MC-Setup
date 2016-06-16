@@ -32,7 +32,6 @@ fi
 # Write the computer model to the 4th ARD computer field for later reference
 defaults write /Library/Preferences/com.apple.RemoteDesktop Text4 -string $computerModel
 
-
 # Get the computer name
 compName=$(scutil --get ComputerName)
 
@@ -45,6 +44,21 @@ fi
 
 # Write the computer type to the 3rd ARD computer field for later reference
 defaults write /Library/Preferences/com.apple.RemoteDesktop Text3 -string $computerType
+
+####################################################
+#	LOCAL USERS & GROUPS
+####################################################
+
+if [ "$computerType" == "lab" ]; then
+# Create a local group for computer teachers
+dscl . create /Groups/cteach
+dscl . create /Groups/cteach RealName "Computer Teachers"
+dscl . create /Groups/cteach passwd "*"
+dscl . create /Groups/cteach gid 800
+
+# Add the computer teachers group to the admin group
+dscl . append /Groups/admin GroupMembership cteach
+fi
 
 ####################################################
 #	NETWORK CONFIGURATION
@@ -196,17 +210,4 @@ cp /private/etc/sudoers /private/etc/sudoers~original
 echo "%admin ALL=(ALL) NOPASSWD: ALL" >> /private/etc/sudoers
 
 
-####################################################
-#	LOCAL USERS & GROUPS
-####################################################
-
-if [ "$computerType" == "lab" ]; then
-# Create a local group for computer teachers
-dscl . create /Groups/cteach
-dscl . create /Groups/cteach RealName "Computer Teachers"
-dscl . create /Groups/cteach passwd "*"
-dscl . create /Groups/cteach gid 800
-
-# Add the computer teachers group to the admin group
-dscl . append /Groups/admin GroupMembership cteach
-fi
+reboot now
