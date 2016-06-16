@@ -100,9 +100,14 @@ sudo pmset -a hibernatemode 0
 # Turn on SSH access
 $systemsetup -setremotelogin on
 
-#Enable ARD for localadmin
+# Enable ARD for localadmin
 $kickstart -configure -allowAccessFor -specifiedUsers
 $kickstart -activate -configure -access -on -users "localadmin" -privs -all -restart -agent -menu
+
+# Enable legacy VNC
+$kickstart -activate -configure -clientopts -setreqperm -reqperm yes
+$kickstart -activate -configure -clientopts -setvnclegacy -vnclegacy yes
+$kickstart -activate -configure -clientopts -setvncpw -vncpw
 
 ####################################################
 #	MISC
