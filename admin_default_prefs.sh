@@ -135,6 +135,9 @@ defaults write NSGlobalDomain AppleMetricUnits -bool false
 # Disable auto-correct
 defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 
+# Set clock to 12-hour with am/pm
+defaults write com.apple.menuextra.clock DateFormat -string 'EEE MMM d  h:mm a'
+
 # ==============================================
 # Screen
 # ==============================================
