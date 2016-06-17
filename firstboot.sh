@@ -51,10 +51,10 @@ defaults write /Library/Preferences/com.apple.RemoteDesktop Text3 -string $compu
 
 if [ "$computerType" == "lab" ]; then
 # Create a local group for computer teachers
-dscl . create /Groups/cteach
-dscl . create /Groups/cteach RealName "Computer Teachers"
-dscl . create /Groups/cteach passwd "*"
-dscl . create /Groups/cteach gid 800
+dscl . create /Groups/labadmin
+dscl . create /Groups/labadmin RealName "Lab Admins"
+dscl . create /Groups/labadmin passwd "*"
+dscl . create /Groups/labadmin gid 501
 
 # Add the computer teachers group to the admin group
 dscl . append /Groups/admin GroupMembership cteach
