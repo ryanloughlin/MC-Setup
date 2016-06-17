@@ -32,11 +32,11 @@ fi
 # Write the computer model to the 4th ARD computer field for later reference
 defaults write /Library/Preferences/com.apple.RemoteDesktop Text4 -string $computerModel
 
-# Get the computer name
-compName=$(scutil --get ComputerName)
+# Get the computer name and make it all lowercase
+compName=$(scutil --get ComputerName | tr '[:upper:]' '[:lower:]')
 
 # See if the computer name contains 'Lab'
-if [[ $compName == *"Lab"* ]]; then
+if [[ $compName == *"lab"* ]]; then
 computerType=lab
 else
 computerType=user
