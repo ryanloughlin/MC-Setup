@@ -57,7 +57,7 @@ dscl . create /Groups/labadmin passwd "*"
 dscl . create /Groups/labadmin gid 501
 
 # Add the computer teachers group to the admin group
-dscl . append /Groups/admin GroupMembership cteach
+dscl . append /Groups/admin GroupMembership labadmin
 fi
 
 ####################################################
