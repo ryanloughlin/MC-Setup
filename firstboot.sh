@@ -219,14 +219,9 @@ echo "%admin ALL=(ALL) NOPASSWD: ALL" >> /private/etc/sudoers
 
 # Set to autologin as localadmin on next boot
 defaults write /Library/Preferences/com.apple.loginwindow autoLoginUser localadmin
-
-python /usr/local/sbin/tccutil.py -i /usr/bin/osascript
-python /usr/local/sbin/tccutil.py --insert com.apple.Terminal
-python /usr/local/sbin/tccutil.py --insert org.pmbuko.ADPassMon
+curl -o /etc/kcpassword http://brego/files/kcpassword
 
 # Grab the script to bind the machine to AD, allow it to be executed and run it.
 curl -o /usr/local/sbin/adbind.sh http://brego/files/adbind.sh
 chmod a+x /usr/local/sbin/adbind.sh
 /usr/local/sbin/adbind.sh
-
-reboot now
