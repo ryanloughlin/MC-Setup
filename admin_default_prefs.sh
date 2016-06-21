@@ -436,8 +436,19 @@ defaults write com.apple.digihub com.apple.digihub.dvd.video.appeared -dict acti
 # osascript -e 'tell application "Finder" to set desktop picture to POSIX file "/Library/Desktop Pictures/Solid Colors/Solid Gray Pro Ultra Dark.png"'
 osascript -e 'tell application "Finder" to set desktop picture to POSIX file "/Library/Desktop Pictures/admin.png"'
 
+# Turn off autologin
+defaults write /Library/Preferences/com.apple.loginwindow autoLoginUser NULL
+
 # Kill all affected applications
 killall Dock && killall Finder && killall SystemUIServer && killall Terminal
 
 # Remove the launch agent so the script doesn't run on subsequent logins
 rm /Users/localadmin/Library/LaunchAgents/us.nh.k12.portsmouth.adminprefs.plist
+
+# Grab the script to bind the machine to AD, allow it to be executed and run it.
+curl -o /usr/local/sbin/adbind.sh http://brego/files/adbind.sh
+chmod a+x /usr/local/sbin/adbind.sh
+/usr/local/sbin/adbind.sh
+
+
+reboot now
