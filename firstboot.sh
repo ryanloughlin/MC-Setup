@@ -220,4 +220,9 @@ echo "%admin ALL=(ALL) NOPASSWD: ALL" >> /private/etc/sudoers
 # Set to autologin as localadmin on next boot
 defaults write /Library/Preferences/com.apple.loginwindow autoLoginUser localadmin
 
+python /usr/local/sbin/tccutil.py -i /usr/bin/osascript
+python /usr/local/sbin/tccutil.py --insert com.apple.Terminal
+python /usr/local/sbin/tccutil.py --insert org.pmbuko.ADPassMon
+
+
 reboot now
