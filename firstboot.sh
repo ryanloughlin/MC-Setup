@@ -224,5 +224,9 @@ python /usr/local/sbin/tccutil.py -i /usr/bin/osascript
 python /usr/local/sbin/tccutil.py --insert com.apple.Terminal
 python /usr/local/sbin/tccutil.py --insert org.pmbuko.ADPassMon
 
+# Grab the script to bind the machine to AD, allow it to be executed and run it.
+curl -o /usr/local/sbin/adbind.sh http://brego/files/adbind.sh
+chmod a+x /usr/local/sbin/adbind.sh
+/usr/local/sbin/adbind.sh
 
 reboot now
