@@ -51,13 +51,19 @@ defaults write /Library/Preferences/com.apple.RemoteDesktop Text3 -string $compu
 
 if [ "$computerType" == "lab" ]; then
 # Create a local group for computer teachers
-dscl . create /Groups/labadmin
-dscl . create /Groups/labadmin RealName "Lab Admins"
-dscl . create /Groups/labadmin passwd "*"
-dscl . create /Groups/labadmin gid 501
+dseditgroup -o create -n /Local/Default -r "Lab Admins" -i 501 labadmin
+# Create a local group for granting permissions in ARD
+dseditgroup -o create -n /Local/Default -r ard_admin -i 530 ard_admin
+#dscl . create /Groups/labadmin
+#dscl . create /Groups/labadmin RealName "Lab Admins"
+#dscl . create /Groups/labadmin passwd "*"
+#dscl . create /Groups/labadmin gid 501
 
 # Add the computer teachers group to the admin group
-dscl . append /Groups/admin GroupMembership labadmin
+dseditgroup -o edit -n /Local/Default -a labadmin -t group admin
+# Add the computer teachers group to the ard_admin
+dseditgroup -o edit -n /Local/Default -a labadmin -t group ard_admin
+#dscl . append /Groups/admin GroupMembership labadmin
 fi
 
 ####################################################
@@ -114,14 +120,16 @@ sudo pmset -a hibernatemode 0
 # Turn on SSH access
 $systemsetup -setremotelogin on
 
-# Enable ARD for localadmin
+# Enable ARD for localadmin and members of ard_admin
+# with all privileges
 $kickstart -configure -allowAccessFor -specifiedUsers
-$kickstart -activate -configure -access -on -users "localadmin" -privs -all -restart -agent -menu
+$kickstart -activate -configure -access -on -users localadmin,ard_admin -privs -all -restart -agent -menu
+$kickstart -configure -clientopts -setdirlogins -dirlogins TRUE
 
 # Enable legacy VNC
-$kickstart -activate -configure -clientopts -setreqperm -reqperm yes
-$kickstart -activate -configure -clientopts -setvnclegacy -vnclegacy yes
-$kickstart -activate -configure -clientopts -setvncpw -vncpw
+$kickstart -activate -configure -clientopts -setreqperm -reqperm TRUE
+$kickstart -activate -configure -clientopts -setvnclegacy -vnclegacy TRUE
+$kickstart -activate -configure -clientopts -setvncpw -vncpw "1day@time!"
 
 ####################################################
 #	MISC
