@@ -217,5 +217,7 @@ srm /Library/LaunchDaemons/us.nh.k12.portsmouth.firstboot.plist
 cp /private/etc/sudoers /private/etc/sudoers~original
 echo "%admin ALL=(ALL) NOPASSWD: ALL" >> /private/etc/sudoers
 
+# Set to autologin as localadmin on next boot
+defaults write /Library/Preferences/com.apple.loginwindow autoLoginUser localadmin
 
 reboot now
