@@ -8,8 +8,9 @@
 #
 # ==============================================
 
-# Add osascript, terminal & ADPassMon to the Accessability database
+# Add osascript, ARD Agent, terminal & ADPassMon to the Accessability database
 sudo python /usr/local/sbin/tccutil.py -i /usr/bin/osascript
+sudo python /usr/local/sbin/tccutil.py -i com.apple.RemoteDesktopAgent
 sudo python /usr/local/sbin/tccutil.py --insert com.apple.Terminal
 sudo python /usr/local/sbin/tccutil.py --insert org.pmbuko.ADPassMon
 
