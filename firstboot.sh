@@ -54,16 +54,10 @@ if [ "$computerType" == "lab" ]; then
 dseditgroup -o create -n /Local/Default -r "Lab Admins" -i 501 labadmin
 # Create a local group for granting permissions in ARD
 dseditgroup -o create -n /Local/Default -r ard_admin -i 530 ard_admin
-#dscl . create /Groups/labadmin
-#dscl . create /Groups/labadmin RealName "Lab Admins"
-#dscl . create /Groups/labadmin passwd "*"
-#dscl . create /Groups/labadmin gid 501
-
 # Add the computer teachers group to the admin group
 dseditgroup -o edit -n /Local/Default -a labadmin -t group admin
 # Add the computer teachers group to the ard_admin
 dseditgroup -o edit -n /Local/Default -a labadmin -t group ard_admin
-#dscl . append /Groups/admin GroupMembership labadmin
 fi
 
 ####################################################
@@ -219,6 +213,7 @@ echo "%admin ALL=(ALL) NOPASSWD: ALL" >> /private/etc/sudoers
 
 # Set to autologin as localadmin on next boot
 defaults write /Library/Preferences/com.apple.loginwindow autoLoginUser localadmin
+defaults write /Library/Preferences/com.apple.loginwindow autoLoginUserUID 499
 curl -o /etc/kcpassword http://brego/files/kcpassword
 
 # Grab the script to bind the machine to AD, allow it to be executed and run it.
