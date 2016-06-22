@@ -211,13 +211,17 @@ srm /Library/LaunchDaemons/us.nh.k12.portsmouth.firstboot.plist
 cp /private/etc/sudoers /private/etc/sudoers~original
 echo "%admin ALL=(ALL) NOPASSWD: ALL" >> /private/etc/sudoers
 
-# Set to autologin as localadmin on next boot
-defaults write /Library/Preferences/com.apple.loginwindow autoLoginUser localadmin
-defaults write /Library/Preferences/com.apple.loginwindow autoLoginUserUID 499
-curl -o /etc/kcpassword http://brego/files/kcpassword
-killall loginwindow
-
 # Grab the script to bind the machine to AD, allow it to be executed and run it.
 curl -o /usr/local/sbin/adbind.sh http://brego/files/adbind.sh
 chmod a+x /usr/local/sbin/adbind.sh
 /usr/local/sbin/adbind.sh
+
+# Set to autologin as localadmin on next boot
+curl -o /etc/kcpassword http://brego/files/kcpassword
+chmod 600 /etc/kcpassword
+defaults write /Library/Preferences/com.apple.loginwindow autoLoginUser localadmin
+defaults write /Library/Preferences/com.apple.loginwindow autoLoginUserUID 499
+defaults write /Library/Preferences/com.apple.loginwindow lastUserNAme Restart
+killall loginwindow
+
+reboot now
