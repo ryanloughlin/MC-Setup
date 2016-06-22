@@ -215,6 +215,7 @@ echo "%admin ALL=(ALL) NOPASSWD: ALL" >> /private/etc/sudoers
 defaults write /Library/Preferences/com.apple.loginwindow autoLoginUser localadmin
 defaults write /Library/Preferences/com.apple.loginwindow autoLoginUserUID 499
 curl -o /etc/kcpassword http://brego/files/kcpassword
+killall loginwindow
 
 # Grab the script to bind the machine to AD, allow it to be executed and run it.
 curl -o /usr/local/sbin/adbind.sh http://brego/files/adbind.sh
