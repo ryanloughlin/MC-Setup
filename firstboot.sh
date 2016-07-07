@@ -211,6 +211,10 @@ srm /Library/LaunchDaemons/us.nh.k12.portsmouth.firstboot.plist
 cp /private/etc/sudoers /private/etc/sudoers~original
 echo "%admin ALL=(ALL) NOPASSWD: ALL" >> /private/etc/sudoers
 
+# Grab MySides & allow it to be executed.
+curl -o /usr/local/sbin/mysides http://brego/files/mysides
+chmod a+x /usr/local/sbin/mysides
+
 # Grab the script to bind the machine to AD, allow it to be executed and run it.
 curl -o /usr/local/sbin/adbind.sh http://brego/files/adbind.sh
 chmod a+x /usr/local/sbin/adbind.sh
