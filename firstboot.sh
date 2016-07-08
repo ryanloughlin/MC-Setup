@@ -217,9 +217,10 @@ chmod 644 /Library/LaunchAgents/us.nh.k12.portsmouth.adpassmon.plist
 chown root:wheel /Library/LaunchAgents/us.nh.k12.portsmouth.adpassmon.plist
 
 # Grab MySides & allow it to be executed.
-sudo curl -o /usr/local/sbin/mysides.tar.gz http://brego/files/mysides.tar.gz
-sudo tar -zxvf /usr/local/sbin/mysides.tar.gz
-sudo rm /usr/local/sbin/mysides.tar.gz
+sudo curl -o /tmp/mysides.tar.gz http://brego/files/mysides.tar.gz
+sudo tar -zxvf /tmp/mysides.tar.gz
+sudo rm /tmp/mysides.tar.gz
+sudo cp /tmp/mysides /usr/local/sbin/mysides
 sudo chmod a+x /usr/local/sbin/mysides
 
 # Grab the script to bind the machine to AD, allow it to be executed and run it.
