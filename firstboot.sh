@@ -212,8 +212,8 @@ cp /private/etc/sudoers /private/etc/sudoers~original
 echo "%admin ALL=(ALL) NOPASSWD: ALL" >> /private/etc/sudoers
 
 # Grab ADPassMon launchdaemon.
-curl -o /Library/LaunchDaemons/us.nh.k12.portsmouth.adpassmon.plist http://brego/files/us.nh.k12.portsmouth.adpassmon.plist
-chmod 644 /Library/LaunchDaemons/us.nh.k12.portsmouth.adpassmon.plist
+curl -o /Library/LaunchAgents/us.nh.k12.portsmouth.adpassmon.plist http://brego/files/us.nh.k12.portsmouth.adpassmon.plist
+chmod 644 /Library/LaunchAgents/us.nh.k12.portsmouth.adpassmon.plist
 chown root:wheel /Library/LaunchAgents/us.nh.k12.portsmouth.adpassmon.plist
 
 # Grab MySides & allow it to be executed.
