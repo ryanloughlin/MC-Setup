@@ -8,6 +8,21 @@
 #
 # ==============================================
 
+
+# ==============================================
+# Sidebar
+# ==============================================
+
+/usr/local/sbin/mysides remove all
+/usr/local/sbin/mysides add "Macintosh HD" file:///
+/usr/local/sbin/mysides add Applications file:///Applications/
+/usr/local/sbin/mysides add Home file:///Users/$USER/
+/usr/local/sbin/mysides add Desktop file:///Users/$USER/Desktop/
+/usr/local/sbin/mysides add Documents file:///Users/$USER/Documents/
+/usr/local/sbin/mysides add Downloads file:///Users/$USER/Downloads/
+
+
+
 # Add osascript, ARD Agent, terminal & ADPassMon to the Accessability database
 sudo python /usr/local/sbin/tccutil.py -i /usr/bin/osascript
 sudo python /usr/local/sbin/tccutil.py -i com.apple.RemoteDesktopAgent
