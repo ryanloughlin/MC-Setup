@@ -70,6 +70,10 @@ $networksetup -detectnewhardware
 $networksetup -setnetworkserviceenabled FireWire off 
 $networksetup -setnetworkserviceenabled "Thunderbolt Bridge" off
 
+if [ "$computerModel" = "desktop" ]; then
+$networksetup -setnetworkserviceenabled "Wi-Fi" off
+fi
+
 # Set ipV6 to LinkLocal
 $networksetup -setv6LinkLocal Ethernet
 $networksetup -setv6LinkLocal Wi-Fi
@@ -210,6 +214,10 @@ srm /Library/LaunchDaemons/us.nh.k12.portsmouth.firstboot.plist
 
 cp /private/etc/sudoers /private/etc/sudoers~original
 echo "%admin ALL=(ALL) NOPASSWD: ALL" >> /private/etc/sudoers
+
+# Comment out the /home line of auto_master
+sed -i.bak 's%/home%#/home%' /etc/auto_master
+
 
 # Grab ADPassMon launchdaemon.
 curl -o /Library/LaunchAgents/us.nh.k12.portsmouth.adpassmon.plist http://brego/files/us.nh.k12.portsmouth.adpassmon.plist
