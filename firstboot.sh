@@ -210,13 +210,14 @@ if [ $os_rev_major -ge 10 ]; then
 fi
 
 # Remove the LaunchDaemon so the script doesn't run on subsequent boots
-srm /Library/LaunchDaemons/us.nh.k12.portsmouth.firstboot.plist
+launchctl unload /Library/LaunchDaemons/us.nh.k12.portsmouth.firstboot.plist
+rm /Library/LaunchDaemons/us.nh.k12.portsmouth.firstboot.plist
 
 cp /private/etc/sudoers /private/etc/sudoers~original
 echo "%admin ALL=(ALL) NOPASSWD: ALL" >> /private/etc/sudoers
 
 # Comment out the /home line of auto_master
-sed -i.bak 's%/home%#/home%' /etc/auto_master
+#sed -i.bak 's%/home%#/home%' /etc/auto_master
 
 
 # Grab ADPassMon launchdaemon.
